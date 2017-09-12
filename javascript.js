@@ -15,12 +15,11 @@ function displayGIFs (){
 	    	console.log (response.data);
 
 	    	for (var i = 0; i < 10; i++){
-		        $("#showGIFs").append("<img class='resultGIFs' src='"+response.data[i].images.fixed_height_still.url+"' data-still='"+response.data[i].images.fixed_height_still.url+"' data-animate='"+response.data[i].images.fixed_height.url+"' data-state='still'>");
-		        $("#showGIFs").append("Rating:"+response.data[i].rating);
+		        $("#showGIFs").append("<div class='GIFandRating'><img class='resultGIFs' src='"+response.data[i].images.fixed_height_still.url+"' data-still='"+response.data[i].images.fixed_height_still.url+"' data-animate='"+response.data[i].images.fixed_height.url+"' data-state='still'><br>Rating:"+response.data[i].rating+"<br></div>");
+		        // $("#showGIFs").append("<br>Rating:"+response.data[i].rating+"<br>");
 		    };
 		    $(".resultGIFs").on("click", function(){
 		    	var state = $(this).attr("data-state");
-		    	console.log(state);
 				if(state === "still"){
 		          $(this).attr("src", $(this).attr("data-animate"));
 		          $(this).attr("data-state", "animate");
@@ -39,7 +38,7 @@ function renderButtons() {
 	$("#topics-view").empty();
 
 	for (var i = 0; i < topics.length; i++){
-    	$("#topics-view").append("<button class='topicButton' id='"+topics[i]+"'>"+topics[i]+"</button>");
+    	$("#topics-view").append("<button class='topicButton' id='"+topics[i]+"'><h3>"+topics[i]+"</h3></button>");
     }
     $(".topicButton").click(displayGIFs);
 };
